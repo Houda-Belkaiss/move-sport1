@@ -9,21 +9,54 @@
 // ÉTAPE 0 : Découvrir les données
 // ------------------------------------------------------------
 // Questions :
-//  - Que contient le tableau `cours` ? Combien d'éléments ?
-//  - Que contient un cours ? Et un créneau ?
-//  - Comment accéder au prix du 2e cours ? Au 1er créneau du 3e cours ?
+//  - Que contient le tableau `cours` ? array of object// Combien d'éléments: 4 elements ?
+//  - Que contient un cours ?id/nom/categorie/duree/coach/image/ prix/creneaux:  //Et un créneau ?//id /jour/ heure /occupes
+//  - Comment accéder au prix du 2e cours ?// cours[1].prix //par  Au 1er créneau du 3e cours ?//cours[2].creneaux[0]
 // TODO : affichez `cours` dans la console avec console.log(), puis explorez-le.
+//console.log(cours);
 
 
 // ------------------------------------------------------------
 // ÉTAPE 1 : Sélectionner les éléments du DOM
 // ------------------------------------------------------------
 // Identifiants disponibles dans index.html :
+//
+//
+
 //  courses-container, selected-course-title, slots-container,
 //  seats-container, summary-course, summary-slot, summary-seats,
 //  summary-count, summary-total, confirm-button, message
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
-// Question : quelle est la différence entre getElementById et querySelector ?
+// Question : quelle est la différence entre getElementById et querySelector ?// la différence est getElementById est seluctione par id et queryselector est selectione les classe et id et aussi type de data qui done 
+
+const coursesContainer = document.getElementById("courses-container") ;
+//console.log(coursesContainer);
+const selectedCourseTitle = document.getElementById("selected-course-title");
+//console.log(selectedCourseTitle);
+const slotsContainer = document.getElementById("slots-container");
+//console.log(slotsContainer);
+const seatsContainer = document.getElementById("seats-container");
+//console.log(seatsContainer);
+const summaryCourse = document.getElementById("summary-course");
+//console.log(summaryCourse);
+const summarySlot = document.getElementById("summary-slot");
+//console.log(summarySlot);
+const summarySeats = document.getElementById("summary-seats");
+//console.log(summarySeats);
+const summaryCount = document.getElementById("summary-count");
+//console.log(summaryCount);
+const summaryTotal = document.getElementById("summary-total");
+//console.log(summaryTotal);
+const confirmButton = document.getElementById("confirm-button");
+//console.log(confirmButton);
+const message = document.getElementById("message");
+//console.log(message);
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------
@@ -31,10 +64,17 @@
 // ------------------------------------------------------------
 // L'application doit "se souvenir" de ses choix pendant la session.
 // TODO : déclarez les variables d'état nécessaires.
+//const coursesContainer = document.getElementById("courses-container") ;
 // Question : de quelles informations avez-vous besoin ?
 //  (cours choisi, créneau choisi, emplacements choisis...)
+// en a besoin l'information cours choisi avec leur informations
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
 
+
+        
+        
+
+    
 
 // ------------------------------------------------------------
 // ÉTAPE 3 : Afficher les cours (US01)
@@ -44,10 +84,25 @@
 //  - Videz ensuite #courses-container, puis recréez les cartes depuis les données.
 //  - Chaque carte affiche : visuel, catégorie, nom, durée, coach, prix.
 // Questions :
-//  - Quelle boucle ou méthode de tableau allez-vous utiliser ?
+//  - Quelle boucle ou méthode de tableau allez-vous utiliser ? ils doit utilise forEch
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
-
+cours.forEach(element => {
+        const article = document.createElement('article');
+        article.innerHTML = `
+        <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-md" data-id="hiit">
+            <img src=${element.image} alt="Visuel du cours HIIT Express" class="h-36 w-full object-cover" />
+            <div class="space-y-1 p-4">
+              <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${element.categorie}</span>
+              <h3 class="text-lg font-semibold text-slate-900">${element.nom}</h3>
+              <p class="text-sm text-slate-600">${element.duree}, avec ${element.coach}</p>
+              <p class="pt-1 text-base font-bold text-slate-900">${element.prix} € <span class="text-sm font-normal text-slate-500">par place</span></p>
+            </div>
+          </article>
+            `
+            coursesContainer.appendChild(article);
+           
+   });
 
 // ------------------------------------------------------------
 // ÉTAPE 4 : Sélectionner un cours (US02)
