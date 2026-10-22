@@ -29,7 +29,7 @@
 // TODO : récupérez ces éléments et rangez-les dans des constantes.
 // Question : quelle est la différence entre getElementById et querySelector ?// la différence est getElementById est seluctione par id et queryselector est selectione les classe et id et aussi type de data qui done 
 
-const coursesContainer = document.getElementById("courses-container") ;
+const coursesContainer = document.getElementById("courses-container");
 //console.log(coursesContainer);
 const selectedCourseTitle = document.getElementById("selected-course-title");
 //console.log(selectedCourseTitle);
@@ -71,10 +71,10 @@ const message = document.getElementById("message");
 // Indice : pourquoi un tableau est-il adapté pour les emplacements choisis ?
 
 
-        
-        
 
-    
+
+
+
 
 // ------------------------------------------------------------
 // ÉTAPE 3 : Afficher les cours (US01)
@@ -88,9 +88,9 @@ const message = document.getElementById("message");
 //  - Comment stocker l'id du cours sur la carte (indice : data-*) ?
 //  - Les template literals (`...${valeur}...`) peuvent-ils vous aider ?
 cours.forEach(element => {
-        const article = document.createElement('article');
-        article.innerHTML = `
-        <article class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-md" data-id="hiit">
+  const article = document.createElement('article');
+  article.innerHTML = `
+        <article  class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:shadow-md" data-id="${element.id}">
             <img src=${element.image} alt="Visuel du cours HIIT Express" class="h-36 w-full object-cover" />
             <div class="space-y-1 p-4">
               <span class="inline-block rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-teal-700">${element.categorie}</span>
@@ -100,9 +100,9 @@ cours.forEach(element => {
             </div>
           </article>
             `
-            coursesContainer.appendChild(article);
-           
-   });
+  coursesContainer.appendChild(article);
+
+});
 
 // ------------------------------------------------------------
 // ÉTAPE 4 : Sélectionner un cours (US02)
@@ -116,6 +116,46 @@ cours.forEach(element => {
 //  - Comment retrouver le cours à partir de l'id lu dans la carte ?
 //  - Que faut-il réinitialiser quand on change de cours ?
 
+const coursesC = document.querySelectorAll(".cursor-pointer");
+//const coursesCont = document.getElementById("courses-container") ;
+
+coursesC.forEach(function (cour) {
+  cour.addEventListener('click', function () {
+
+    coursesC.forEach(function (c) {
+      c.classList.remove('ring-2', 'ring-teal-600');
+    });
+    cour.classList.add('ring-2', 'ring-teal-600');
+
+    let selectedCourse = cours.find(item => cour.dataset.id === item.id);
+
+    selectedCourseTitle.textContent = selectedCourse.nom;
+      slotsContainer.innerHTML = "";
+    selectedCourse.creneaux.forEach(function (crn) {
+      console.log(crn);
+      const button = document.createElement('button');
+      button.innerHTML = ` <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 " data-id="${crn.id}">
+           ${crn.jour}   <span class="font-normal"> ${crn.heure}</span>`;
+
+      slotsContainer.appendChild(button);
+
+    })
+  })
+})
+
+//bg-teal-600 text-white
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ------------------------------------------------------------
 // ÉTAPE 5 : Afficher et sélectionner un créneau (US03)
@@ -127,6 +167,18 @@ cours.forEach(element => {
 // Questions :
 //  - Quand cette fonction doit-elle être appelée ?
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
+//const selectedCourseTitle = document.getElementById("selected-course-title");
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------
