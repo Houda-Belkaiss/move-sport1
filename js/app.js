@@ -128,32 +128,33 @@ coursesC.forEach(function (cour) {
     cour.classList.add('ring-2', 'ring-teal-600');
 
     let selectedCourse = cours.find(item => cour.dataset.id === item.id);
-
+      //console.log(selectedCourse);
+      
     selectedCourseTitle.textContent = selectedCourse.nom;
-      slotsContainer.innerHTML = "";
+    slotsContainer.textContent = "";
     selectedCourse.creneaux.forEach(function (crn) {
-      console.log(crn);
+     // console.log(crn);
       const button = document.createElement('button');
-      button.innerHTML = ` <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition border-teal-600 " data-id="${crn.id}">
-           ${crn.jour}   <span class="font-normal"> ${crn.heure}</span>`;
+      button.innerHTML = ` <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition  " data-id="${crn.id}">
+            ${crn.jour} <span class="font-normal">${crn.heure}</span>
+          </button>`
+
+    //console.log(crn.occupes);
+
+
+
 
       slotsContainer.appendChild(button);
 
-    })
-  })
+
+    });
+    slotsContainerr();
+    
+    
+  });
+
 })
-
 //bg-teal-600 text-white
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -169,15 +170,35 @@ coursesC.forEach(function (cour) {
 //  - Que se passe-t-il si aucun cours n'est encore sélectionné ?
 //const selectedCourseTitle = document.getElementById("selected-course-title");
 
+function slotsContainerr() {
+  let buttons = slotsContainer.querySelectorAll("button");
+  //console.log(buttons);
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (c) {
+        c.classList.remove('bg-teal-600','text-white')
+      });
+      btn.classList.add('bg-teal-600', 'text-white')
+     
+      
+    
 
-
-
-
-
-
-
-
-
+    })
+    
+  })
+}
+ 
+//     //function afficherBtn() {
+ // cours.forEach(function (occup) {
+   // //console.log(occup.creneaux);
+//occup.creneaux.forEach(function (c) {
+  ////console.log(c.occupes);
+  
+//}
+//)
+    
+  //})
+//}
 
 
 
@@ -192,6 +213,12 @@ coursesC.forEach(function (cour) {
 //  - Comment construire "A1" à partir d'une rangée et d'un numéro ?
 //  - Comment savoir si un emplacement est dans la liste des occupés (includes) ?
 //  - Faut-il une boucle imbriquée ? Pourquoi ?
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------
