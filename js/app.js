@@ -117,9 +117,11 @@ cours.forEach(element => {
 //  - Que faut-il réinitialiser quand on change de cours ?
 
 const coursesC = document.querySelectorAll(".cursor-pointer");
+
 //const coursesCont = document.getElementById("courses-container") ;
 
 coursesC.forEach(function (cour) {
+  
   cour.addEventListener('click', function () {
 
     coursesC.forEach(function (c) {
@@ -127,29 +129,26 @@ coursesC.forEach(function (cour) {
     });
     cour.classList.add('ring-2', 'ring-teal-600');
 
-    let selectedCourse = cours.find(item => cour.dataset.id === item.id);
+    let selectedCourse = cours.find(item => cour.dataset.id === item.id );
+    
+    
       //console.log(selectedCourse);
       
     selectedCourseTitle.textContent = selectedCourse.nom;
     slotsContainer.textContent = "";
     selectedCourse.creneaux.forEach(function (crn) {
-     // console.log(crn);
+     //console.log(crn);
       const button = document.createElement('button');
+     
       button.innerHTML = ` <button type="button" class="rounded-xl border px-4 py-2 text-sm font-medium transition  " data-id="${crn.id}">
             ${crn.jour} <span class="font-normal">${crn.heure}</span>
           </button>`
+     slotsContainer.appendChild(button);
 
     //console.log(crn.occupes);
 
-
-
-
-      slotsContainer.appendChild(button);
-
-
     });
     slotsContainerr();
-    
     
   });
 
@@ -179,25 +178,22 @@ function slotsContainerr() {
         c.classList.remove('bg-teal-600','text-white')
       });
       btn.classList.add('bg-teal-600', 'text-white')
-     
-      
-    
-
     })
-    
+   
   })
 }
  
-//     //function afficherBtn() {
- // cours.forEach(function (occup) {
-   // //console.log(occup.creneaux);
+
+cours.forEach(function (occup) {
+  console.log(occup.creneaux);
 //occup.creneaux.forEach(function (c) {
-  ////console.log(c.occupes);
+  //console.log(c.occupes);
   
-//}
-//)
+}
+)
     
-  //})
+  
+//)
 //}
 
 
@@ -213,6 +209,19 @@ function slotsContainerr() {
 //  - Comment construire "A1" à partir d'une rangée et d'un numéro ?
 //  - Comment savoir si un emplacement est dans la liste des occupés (includes) ?
 //  - Faut-il une boucle imbriquée ? Pourquoi ?
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
 
 
 
